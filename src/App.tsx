@@ -1,30 +1,25 @@
-import { Box, VStack, Flex } from'@chakra-ui/react'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
 
-import { MenuLeft } from './components/MenuLeft';
-import { NewPostInput } from './components/NewPostInput';
-import { Post } from './components/Post';
+import Feed from "./pages/Feed/Feed";
+import SignUp from "./pages/User/Signup";
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Feed />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+]);
+
+export default function App() {
   return (
-    <Flex width='100%' backgroundColor='black' justifyContent='center'>
-      <Flex width="70%" backgroundColor='black' height='100%' alignItems='start'>
-        <VStack width="20%"  height='100%' position='sticky' top='100px' left='0'>
-          <MenuLeft />
-        </VStack>
-        <VStack width="60%" height='100%' spacing={20} borderLeft='2px solid #65778655' borderRight='2px solid #65778655'>
-          <NewPostInput />
-          {
-            new Array(200).fill('').map(_ => (<Post />))
-          }
-        </VStack>
-        <VStack width="20%" backgroundColor='yellow' height='100%' position='sticky' top='100px' left='0'>
-          <Box w='40px' h='40px' bg='yellow.200'>
-            1
-          </Box>
-        </VStack>
-      </Flex>
-    </Flex>
+    <RouterProvider router={router} />
   );
 }
-
-export default App;

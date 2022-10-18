@@ -13,8 +13,8 @@ const ButtonMenuLeft = (props: {title: string, icon: any}) => {
   return (
     <Center 
       justifyContent='start' 
-      width='80%' 
-      padding='4% 10% 4% 0%' 
+      width='100%' 
+      padding='4% 10% 4% 0%'
       borderRadius='27px' 
       border='2px solid #65778655' 
       cursor='pointer' 
@@ -22,10 +22,10 @@ const ButtonMenuLeft = (props: {title: string, icon: any}) => {
       color: "#E1E8ED",
       borderColor: "#1DA1F2",
     }}>
-      <Box marginLeft='15%'>
+      <Box marginLeft='12%'>
         {props.icon}
       </Box>
-      <Text fontSize={22} fontWeight='bold' color='#E1E8ED' marginLeft='16px'>
+      <Text fontSize={18} fontWeight='bold' color='#E1E8ED' marginLeft='13px'>
         {props.title}
       </Text>
     </Center>

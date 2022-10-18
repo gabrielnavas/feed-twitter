@@ -18,8 +18,8 @@ const IconAction = (props: {icon: any}) => {
     <Box>
       <Icon 
         as={props.icon} 
-        w={10} 
-        h={10} 
+        w={7} 
+        h={7} 
         color='#1DA1F2'
         cursor='pointer' 
         _hover={{
@@ -40,33 +40,33 @@ const ActionsNewPost = () => {
   )
 }
 
-const ButtonNewPostFinish = () => {
+const ButtonNewPostFinish = (props: {onClick: Function}) => {
   return (
     <Button 
       colorScheme='blue' 
-      padding='25px 35px 25px 35px'
-      fontSize={22}>
+      padding='22px 32px 22px 32px'
+      fontSize={18}
+      onClick={() => props.onClick()}
+      >
       Postar
     </Button>
   )
 }
 
-const BottomNewPost = () => {
+const BottomNewPost = (props: {onClick: Function}) => {
   return (
     <HStack justifyContent='space-between' width='100%'>
       <ActionsNewPost />
-      <ButtonNewPostFinish />
+      <ButtonNewPostFinish onClick={props.onClick} />
     </HStack> 
   )
 }
 
-const TextAreaNewPost = () => {
-  const [textPost, setTextPost] = useState('')
-
+const TextAreaNewPost = (props: {description: string, onChange: Function}) => {
   return (
     <Textarea
-      value={textPost}
-      onChange={e => setTextPost(e.target.value)}
+      value={props.description}
+      onChange={e => props.onChange(e.target.value)}
       placeholder='Here is a sample placeholder'
       minH='150px'
       w='100%'
@@ -86,12 +86,34 @@ const TextAreaNewPost = () => {
 }
 
 const PostRightSide = (props: {}) => {
+  const [description, setDescription] = useState('')
+
+  console.log(description);
+  
+
+  const createPost = async () => {
+    const respUsers = await fetch('http://localhost:4000/user')
+    const users = await respUsers.json()
+    const user = users[0]
+
+    const respPost = await fetch('http://localhost:4000/post', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({description, userId: user.id})
+    })
+    const post = respPost.json()
+    return post
+  } 
+  
   return (
     <VStack w='80%'>
       <Box w='100%'>
-        <TextAreaNewPost />
+        <TextAreaNewPost description={description} onChange={(text: string) => setDescription(text)} />
       </Box>
-      <BottomNewPost />
+      <BottomNewPost onClick={createPost} />
     </VStack>
   )
 }

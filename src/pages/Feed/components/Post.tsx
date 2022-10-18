@@ -46,7 +46,7 @@ const ActionsPost = () => {
   )
 }
 
-const PostRightSide = (props: {}) => {
+const PostRightSide = (props: {description: string, createdAt: Date}) => {
   return (
     <VStack height='100%'>
       <HStack width='100%' justifyContent='start' spacing={10}>
@@ -65,25 +65,32 @@ const PostRightSide = (props: {}) => {
         <Text 
         fontSize={21} 
         fontFamily='sans-serif'
-        color='lightgray'>5h</Text>
+        color='lightgray'>{props.createdAt.toString().split('T')[0]}</Text>
       </HStack>
       <Box>
         <Text
           fontSize={20} 
           fontFamily='sans-serif'
           color='white'> 
-          is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop pub</Text>
+          {props.description}
+        </Text>
       </Box>
       <ActionsPost />
     </VStack>
   )
 }
 
-const Post = () => {
+type PropsPost = {
+  description: string
+  createdAt: Date
+  id: number
+}
+
+const Post = (props: PropsPost) => {
   return (
     <HStack paddingLeft='10%' paddingRight='10%' paddingTop='3%' borderTop='2px solid #65778655'>
       <PostLeftSide urlPhoto='https://bit.ly/dan-abramov' />
-      <PostRightSide />
+      <PostRightSide description={props.description} createdAt={props.createdAt} />
     </HStack>
   )
 }
