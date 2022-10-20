@@ -13,11 +13,16 @@ const SignUp = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
   return (
-    <Flex  minH='100vh' backgroundColor='black' justifyContent='center'>
-        <VStack spacing={5} width={['200px', '400px', '800px']} margin='50px'>
+    <Flex  minH='100vh' backgroundColor='black' justifyContent='center' >
+        <VStack 
+          spacing={5} 
+          width={['200px', '400px', '800px']} 
+          margin='50px' border='2px solid lightblue'
+          padding={20}
+          borderRadius={20}>
           <Box>
             <Text>
-              <Heading as='h2' size='3xl' noOfLines={1}>
+              <Heading as='h2' size='2xl' noOfLines={1} color='lightblue'>
                 Sign up
               </Heading>
             </Text>
