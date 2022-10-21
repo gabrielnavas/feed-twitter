@@ -6,6 +6,7 @@ import {
 
 import Feed from "./pages/Feed/Feed";
 import SignUp from "./pages/User/Signup";
+import SignUpConfirmationCode from "./pages/User/SignUpConfirmationCode";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/signup/confirmation",
+    element: <SignUpConfirmationCode />,
   },
 ]);
 
