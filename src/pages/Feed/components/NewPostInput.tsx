@@ -120,7 +120,13 @@ const PostRightSide = (props: {}) => {
 
 const NewPostInput = () => {
   return (
-    <HStack w='100%' paddingLeft='10%' paddingRight='10%' paddingTop='1.5%' paddingBottom='.5%' borderTop='2px solid #65778655'>
+    <HStack 
+      w='100%' 
+      paddingLeft='10%' 
+      paddingRight='10%'
+      paddingTop='1.5%' 
+      paddingBottom='.5%' 
+      borderTop='2px solid #65778655'>
       <PostLeftSide urlPhoto='https://bit.ly/dan-abramov' />
       <PostRightSide />
     </HStack>

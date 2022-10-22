@@ -31,10 +31,16 @@ function Feed() {
   return (
     <Flex width='100%' minH='100vh' backgroundColor='black' justifyContent='center'>
       <Flex width="70%" backgroundColor='black' height='100%' alignItems='start'>
-        <VStack width="20%"  height='100%' position='sticky' top='100px' left='0'>
+        <VStack width="20%" height='100%' position='sticky' top='100px' left='0' marginRight='1em'>
           <MenuLeft />
         </VStack>
-        <VStack width="60%" minH='100vh' height='100%' spacing={20} borderLeft='2px solid #65778655' borderRight='2px solid #65778655'>
+        <VStack 
+          width="60%" 
+          minH='100vh' 
+          height='100%' 
+          spacing={20} 
+          borderLeft='2px solid #65778655' 
+          borderRight='2px solid #65778655'>
           <NewPostInput />
           {
             posts.map(post => (
