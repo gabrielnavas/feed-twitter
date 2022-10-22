@@ -1,16 +1,27 @@
 import { VStack, Flex, Box, Checkbox, Button, HStack, Heading, useMediaQuery } from'@chakra-ui/react'
 import { Input, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Link as LinkReactDom } from 'react-router-dom'
 import { useClipboardContents } from './getClipboardContents'
 
 const SignUpConfirmationCode = () => {
-  const [codeConfirmation, setCodeConfirmation] = useState([0,0,0,0,0,0])
+  const [codeConfirmation, setCodeConfirmation] = useState(['','','','','',''])
   const [isLargerThanHD] = useMediaQuery([
     '(min-width: 1000px)',
   ])
   const getClipboard = useClipboardContents()
+
+  useEffect(() => {
+    let allZero = true
+    for (let i = 0; i < codeConfirmation.length; i++) {
+      if(codeConfirmation[i] !== '') {
+        allZero = false
+        console.log(codeConfirmation);
+        
+      }
+    }
+  }, [codeConfirmation])
 
   const handleKeyDown = async (event: any, indexInput: number)=>{
     event.preventDefault();
@@ -19,7 +30,7 @@ const SignUpConfirmationCode = () => {
       const textClipBoard = await getClipboard()
       const codeConfirmationCopy = [...codeConfirmation]
       for (let i = indexInput; i < codeConfirmationCopy.length; i++) {
-        codeConfirmationCopy[i] = Number(textClipBoard.charAt(i))
+        codeConfirmationCopy[i] = textClipBoard.charAt(i)
       }
       setCodeConfirmation(codeConfirmationCopy)
     }
@@ -54,7 +65,7 @@ const SignUpConfirmationCode = () => {
                   onChange={e => {
                     const value = e.target.value && e.target.value.length > 0 ? e.target.value[0] : e.target.value
                     const codeConfirmationCopy = [...codeConfirmation]
-                    codeConfirmationCopy[index] = Number(value)
+                    codeConfirmationCopy[index] = String(value)
                     setCodeConfirmation(codeConfirmationCopy)
                     console.log(codeConfirmationCopy);
                   }}
